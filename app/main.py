@@ -1,8 +1,8 @@
+from fastapi import FastAPI
+
+api = FastAPI()
 
 
-def main():
-    print("Hello World")
-
-
-if __name__ == "__main__":
-    main()
+@api.get(path="/")
+def root():
+    return {"message": "Hello World"}

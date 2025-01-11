@@ -1,3 +1,4 @@
 .env
 venv_lr/
 data/
+__pycache__/

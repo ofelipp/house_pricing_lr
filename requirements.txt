@@ -1,0 +1,8 @@
+# Machine Learning
+pandas==2.2.3
+numpy==2.2.1
+
+# Rest API
+fastapi[standard]==0.115.6
+pydantic-settings==2.7.1
+python-dotenv==1.0.1

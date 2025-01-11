@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "house-pricing-lr"
+version = "0.0.1"
+dependencies = [
+  "fastapi[standard]==0.115.6"
+]
+requires-python = ">=3.12"
+authors = [{name = "Felippe M Oliveira", email = "ofelippm@gmail.com"}]
+description = "House Pricing using Supervised Machine Learning Linear Regression Algorithm"
+readme = "README.md"
+
+[project.optional-dependencies]
+test = ["pytest==8.3.4", "pytest-cov==6.0.0"]
+lint = ["ruff==0.9.1"]
+task = ["taskipy==1.14.1"]
+
+[project.urls]
+Homepage = ""
+Documentation = ""
+Repository = ""
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'double'
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+[tool.taskipy.tasks]
+lint = 'ruff check .; ruff check . --diff'
+format = 'ruff check . --fix; ruff format .'
+run = 'fastapi dev app/main.py'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=app -vv'
+post_test = 'coverage html'
